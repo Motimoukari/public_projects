@@ -1,0 +1,168 @@
+@font-face {
+  font-family: loudEdge;
+  src: url(../font/UASQUARE.TTF);
+}
+
+body {
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+}
+
+html { 
+  height: 100%;
+  margin: 0;
+  background: url("../images/background.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.background-obstruct {
+  height: 100%;
+  background: black;
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+}
+
+.info_para {
+  max-width: 50%;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+
+.fade-gradient {
+  height: 100%;
+  background: rgb(2,0,36);
+background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(1,0,9,0) 80%, rgba(0,0,0,1) 100%);
+display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo {
+  vertical-align: middle;
+  max-height: 100%;
+  max-width:100%;
+  mix-blend-mode: difference;
+}
+
+#logo_header{
+  vertical-align: middle;
+  max-height: 3%;
+  max-width:3%;
+  mix-blend-mode: difference;
+}
+
+.logo {
+  mix-blend-mode: difference;
+}
+
+.stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  color: white;
+}
+
+.stack span {
+  font-family: loudEdge;
+  mix-blend-mode: difference;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  font-size: 4rem;
+  --stack-height: calc(100% / var(--stacks) - 1px);
+  --inverse-index: calc(calc(var(--stacks) - 1) - var(--index));
+  --clip-top: calc(var(--stack-height) * var(--index) -1px);
+  --clip-bottom: calc(var(--stack-height) * var(--inverse-index));
+  clip-path: inset(var(--clip-top) 0 var(--clip-bottom) 0);
+  animation: stack 340ms cubic-bezier(.46,.29,0,1.24) 1 backwards calc(var(--index) * 120ms), glitch 750ms ease infinite 1500ms alternate-reverse;
+}
+
+.stack img {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  font-size: 4rem;
+  --stack-height: calc(100% / var(--stacks));
+  --inverse-index: calc(calc(var(--stacks) - 1) - var(--index));
+  --clip-top: calc(var(--stack-height) * var(--index) + 1 px);
+  --clip-bottom: calc(var(--stack-height) * var(--inverse-index));
+  clip-path: inset(var(--clip-top) 0 var(--clip-bottom) 0);
+  animation: stack 340ms cubic-bezier(.46,.29,0,1.24) 1 backwards calc(var(--index) * 120ms), glitch 1500ms ease infinite 2s alternate-reverse;
+}
+
+.stack span:nth-child(odd) { --glitch-translate: 8px; }
+.stack span:nth-child(even) { --glitch-translate: -8px; }
+
+.stack img:nth-child(odd) { --glitch-translate: 8px; }
+.stack img:nth-child(even) { --glitch-translate: -8px; }
+
+
+/* Glitch animation by Aldriê at codepen.io */
+/* https://codepen.io/aldrie/pen/PojGYLo */
+
+@keyframes stack {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%);
+    text-shadow: -2px 3px 0 magenta, 2px -3px 0 lime;
+  };
+  60% {
+    opacity: 0.5;
+    transform: translateX(50%);
+  }
+  80% {
+    transform: none;
+    opacity: 1;
+    text-shadow: 2px -3px 0 magenta, -2px 3px 0 lime;
+  }
+  100% {
+    text-shadow: none;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: -2px 3px 0 magenta, 2px -3px 0 lime;
+    transform: translate(var(--glitch-translate));
+  }
+  2% {
+    text-shadow: 2px -3px 0 rmagenta, -2px 3px 0 lime;
+  }
+  4%, 100% {  text-shadow: none; transform: none; }
+}
+
+/************************************************************************************************************************/
+
+/* Style the header */
+.header {
+  padding: 2px;
+  background: black;
+}
+
+/* Page content */
+.content {
+  padding: 2px;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 102px;
+}
